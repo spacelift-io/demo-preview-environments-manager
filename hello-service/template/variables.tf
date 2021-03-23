@@ -3,6 +3,7 @@ variable "infra_repository_branch" {}
 variable "aws_role" {}
 variable "code_version" {}
 variable "domain_name" {}
+variable "domain_name_zone_id" {}
 variable "environment" {}
 
 terraform {

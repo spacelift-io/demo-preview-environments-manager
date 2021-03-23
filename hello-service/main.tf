@@ -4,6 +4,7 @@ module "instances" {
   aws_role = var.aws_role
   certificate_arn = aws_acm_certificate.endpoint-certificate.arn
   domain_name = var.domain_name
+  domain_name_zone_id = var.domain_name_zone_id
 
   providers = {
     spacelift = spacelift

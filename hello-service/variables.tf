@@ -1,11 +1,7 @@
-variable "aws_role" {
-}
-
-variable "domain_name" {
-}
-
-variable "current_stack_id" {
-}
+variable "aws_role" {}
+variable "domain_name" {}
+variable "domain_name_zone_id" {}
+variable "current_stack_id" {}
 
 provider "aws" {
   alias = "us-east-1"
