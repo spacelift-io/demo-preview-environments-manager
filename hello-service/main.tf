@@ -1,3 +1,13 @@
+module "instances" {
+  source = "./instances"
+  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
+  domain_name = var.domain_name
+  manager_stack_id = var.manager_stack_id
+  providers = {
+    spacelift = spacelift
+  }
+}
+
 // You can put common dependencies of all preview environments here.
 // In this case, we create a wildcard certificate.
 
