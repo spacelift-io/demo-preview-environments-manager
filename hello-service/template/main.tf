@@ -32,7 +32,7 @@ resource "spacelift_environment_variable" "code_version" {
   write_only = false
 }
 
-resource "spacelift_environment_variable" "domain_name" {
+resource "spacelift_environment_variable" "aws_role" {
   stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_aws_role"
   value = var.aws_role
