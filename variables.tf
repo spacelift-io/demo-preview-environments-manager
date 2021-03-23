@@ -11,4 +11,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  required_providers {
+    spacelift = {
+      source = "spacelift.io/spacelift-io/spacelift"
+    }
+  }
+}
+
 provider "spacelift" {}
