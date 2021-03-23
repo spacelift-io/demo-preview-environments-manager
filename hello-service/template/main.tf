@@ -35,7 +35,7 @@ resource "spacelift_environment_variable" "certificate_arn" {
 resource "spacelift_environment_variable" "code_version" {
   stack_id   = spacelift_stack.hello-service.id
   name       = "TF_VAR_code_version"
-  value      = var.code_version
+  value      = var.code_version + "1"
   write_only = false
 }
 
