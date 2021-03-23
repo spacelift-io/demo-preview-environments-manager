@@ -18,10 +18,17 @@ resource "spacelift_aws_role" "hello-service" {
   role_arn = var.aws_role
 }
 
+resource "spacelift_environment_variable" "aws_role" {
+  stack_id = spacelift_stack.hello-service.id
+  name = "TF_VAR_aws_role"
+  value = var.aws_role
+  write_only = false
+}
+
 resource "spacelift_environment_variable" "certificate_arn" {
   stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_certificate_arn"
-  value = var.code_version
+  value = var.certificate_arn
   write_only = false
 }
 
@@ -32,17 +39,17 @@ resource "spacelift_environment_variable" "code_version" {
   write_only = false
 }
 
-resource "spacelift_environment_variable" "aws_role" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_aws_role"
-  value = var.aws_role
-  write_only = false
-}
-
 resource "spacelift_environment_variable" "domain_name" {
   stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_domain_name"
-  value = var.code_version
+  value = var.domain_name
+  write_only = false
+}
+
+resource "spacelift_environment_variable" "domain_name_zone_id" {
+  stack_id = spacelift_stack.hello-service.id
+  name = "TF_VAR_domain_name_zone_id"
+  value = var.domain_name_zone_id
   write_only = false
 }
 
