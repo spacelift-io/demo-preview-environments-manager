@@ -1,5 +1,5 @@
 module "instances" {
-  source = "./instances"
+  source = "./environments"
   current_stack_id = var.current_stack_id
   aws_role = var.aws_role
   certificate_arn = aws_acm_certificate.endpoint-certificate.arn
