@@ -2,9 +2,9 @@ resource "spacelift_stack" "hello-service" {
   name = "Demo Preview Environments Hello Service ${var.environment}"
 
   administrative = true
-  autodeploy = true
-  branch = var.infra_repository_branch
-  repository = "demo-preview-environments-infra"
+  autodeploy     = true
+  branch         = var.infra_repository_branch
+  repository     = "demo-preview-environments-infra"
 
   labels = [
     "preview-environment-managed-by:${var.manager_stack_id}",
@@ -19,43 +19,43 @@ resource "spacelift_aws_role" "hello-service" {
 }
 
 resource "spacelift_environment_variable" "aws_role" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_aws_role"
-  value = var.aws_role
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_aws_role"
+  value      = var.aws_role
   write_only = false
 }
 
 resource "spacelift_environment_variable" "certificate_arn" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_certificate_arn"
-  value = var.certificate_arn
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_certificate_arn"
+  value      = var.certificate_arn
   write_only = false
 }
 
 resource "spacelift_environment_variable" "code_version" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_code_version"
-  value = var.code_version
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_code_version"
+  value      = var.code_version
   write_only = false
 }
 
 resource "spacelift_environment_variable" "domain_name" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_domain_name"
-  value = var.domain_name
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_domain_name"
+  value      = var.domain_name
   write_only = false
 }
 
 resource "spacelift_environment_variable" "domain_name_zone_id" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_domain_name_zone_id"
-  value = var.domain_name_zone_id
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_domain_name_zone_id"
+  value      = var.domain_name_zone_id
   write_only = false
 }
 
 resource "spacelift_environment_variable" "environment" {
-  stack_id = spacelift_stack.hello-service.id
-  name = "TF_VAR_environment"
-  value = var.environment
+  stack_id   = spacelift_stack.hello-service.id
+  name       = "TF_VAR_environment"
+  value      = var.environment
   write_only = false
 }

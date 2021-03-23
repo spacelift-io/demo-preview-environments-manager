@@ -1,9 +1,9 @@
 module "instances" {
-  source = "./environments"
-  current_stack_id = var.current_stack_id
-  aws_role = var.aws_role
-  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
-  domain_name = var.domain_name
+  source              = "./environments"
+  current_stack_id    = var.current_stack_id
+  aws_role            = var.aws_role
+  certificate_arn     = aws_acm_certificate.endpoint-certificate.arn
+  domain_name         = var.domain_name
   domain_name_zone_id = var.domain_name_zone_id
 
   providers = {
@@ -29,17 +29,17 @@ resource "aws_route53_record" "endpoint-certificate" {
   provider = aws.us-east-1
 
   for_each = {
-  for dvo in aws_acm_certificate.endpoint-certificate.domain_validation_options : dvo.domain_name => {
-    name   = dvo.resource_record_name
-    record = dvo.resource_record_value
-    type   = dvo.resource_record_type
-  }
+    for dvo in aws_acm_certificate.endpoint-certificate.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
   }
 
   allow_overwrite = true
   name            = each.value.name
   records = [
-    each.value.record]
+  each.value.record]
   ttl     = 60
   type    = each.value.type
   zone_id = var.domain_name_zone_id
