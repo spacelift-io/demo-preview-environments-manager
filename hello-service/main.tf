@@ -42,5 +42,5 @@ resource "aws_route53_record" "endpoint-certificate" {
     each.value.record]
   ttl     = 60
   type    = each.value.type
-  zone_id = data.aws_route53_zone.liftspace.zone_id
+  zone_id = var.domain_name_zone_id
 }
