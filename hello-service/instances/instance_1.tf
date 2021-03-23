@@ -1,4 +1,4 @@
-module "preview-environment-42" {
+module "instance_1" {
   source = "../template"
 
   manager_stack_id = var.current_stack_id
