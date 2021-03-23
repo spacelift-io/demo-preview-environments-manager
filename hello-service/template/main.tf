@@ -1,4 +1,4 @@
-resource "spacelift_stack" "preview-stack" {
+resource "spacelift_stack" "hello-service" {
   name = "Demo Preview Environments Hello Service ${var.environment}"
 
   administrative = true
@@ -13,29 +13,41 @@ resource "spacelift_stack" "preview-stack" {
   ]
 }
 
+resource "spacelift_aws_role" "hello-service" {
+  stack_id = spacelift_stack.hello-service.id
+  role_arn = var.aws_role
+}
+
 resource "spacelift_environment_variable" "certificate_arn" {
-  stack_id = spacelift_stack.preview-stack.id
+  stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_certificate_arn"
   value = var.code_version
   write_only = false
 }
 
 resource "spacelift_environment_variable" "code_version" {
-  stack_id = spacelift_stack.preview-stack.id
+  stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_code_version"
   value = var.code_version
   write_only = false
 }
 
 resource "spacelift_environment_variable" "domain_name" {
-  stack_id = spacelift_stack.preview-stack.id
+  stack_id = spacelift_stack.hello-service.id
+  name = "TF_VAR_aws_role"
+  value = var.aws_role
+  write_only = false
+}
+
+resource "spacelift_environment_variable" "domain_name" {
+  stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_domain_name"
   value = var.code_version
   write_only = false
 }
 
 resource "spacelift_environment_variable" "environment" {
-  stack_id = spacelift_stack.preview-stack.id
+  stack_id = spacelift_stack.hello-service.id
   name = "TF_VAR_environment"
   value = var.environment
   write_only = false

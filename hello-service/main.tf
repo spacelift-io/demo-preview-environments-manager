@@ -1,8 +1,10 @@
 module "instances" {
   source = "./instances"
+  current_stack_id = var.current_stack_id
+  aws_role = var.aws_role
   certificate_arn = aws_acm_certificate.endpoint-certificate.arn
   domain_name = var.domain_name
-  manager_stack_id = var.manager_stack_id
+
   providers = {
     spacelift = spacelift
   }

@@ -1,8 +1,13 @@
+variable "aws_role" {
+}
+
 variable "certificate_arn" {
 }
 
 variable "domain_name" {
 }
 
-variable "manager_stack_id" {
+variable "current_stack_id" {
 }
+
+provider "spacelift" {}
