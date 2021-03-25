@@ -10,7 +10,7 @@ variable "push_policy_id" {}
 terraform {
   required_providers {
     spacelift = {
-      source = "downloads.spacelift.dev/spacelift-io/spacelift"
+      source = "spacelift.io/spacelift-io/spacelift"
     }
   }
 }
