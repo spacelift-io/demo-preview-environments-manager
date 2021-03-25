@@ -61,7 +61,7 @@ resource "spacelift_policy_attachment" "push-policy" {
 resource "spacelift_policy" "push-policy" {
   name = "Demo Preview Environments Environment Push Policy"
   type = "PUSH"
-  body = file("policies/push-policy.rego")
+  body = file("${path.module}/policies/push-policy.rego")
 }
 
 resource "spacelift_stack_destructor" "hello-service" {
