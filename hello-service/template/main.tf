@@ -53,6 +53,17 @@ resource "spacelift_environment_variable" "environment" {
   write_only = false
 }
 
+resource "spacelift_policy_attachment" "push-policy" {
+  stack_id  = spacelift_stack.hello-service.id
+  policy_id = spacelift_policy.push-policy.id
+}
+
+resource "spacelift_policy" "push-policy" {
+  name = "Demo Preview Environments Environment Push Policy"
+  type = "PUSH"
+  body = file("policies/push-policy.rego")
+}
+
 resource "spacelift_stack_destructor" "hello-service" {
   depends_on = [
     spacelift_aws_role.hello-service,
