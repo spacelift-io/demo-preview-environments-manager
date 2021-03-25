@@ -7,8 +7,8 @@ resource "spacelift_stack" "hello-service" {
   repository     = "demo-preview-environments-infra"
 
   labels = [
+    "demo-preview-environments",
     "preview-environment-managed-by:${var.manager_stack_id}",
-    "destroy_on_delete",
     "preview_environment_id:${var.environment}"
   ]
 }
