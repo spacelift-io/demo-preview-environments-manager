@@ -14,7 +14,7 @@ provider "aws" {
 terraform {
   required_providers {
     spacelift = {
-      source = "spacelift.io/spacelift-io/spacelift"
+      source = "downloads.spacelift.dev/spacelift-io/spacelift"
     }
   }
 }

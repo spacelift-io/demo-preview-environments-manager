@@ -59,3 +59,16 @@ resource "spacelift_environment_variable" "environment" {
   value      = var.environment
   write_only = false
 }
+
+resource "spacelift_stack_destructor" "hello-service" {
+  depends_on = [
+    spacelift_aws_role.hello-service,
+    spacelift_environment_variable.aws_role,
+    spacelift_environment_variable.certificate_arn,
+    spacelift_environment_variable.code_version,
+    spacelift_environment_variable.domain_name,
+    spacelift_environment_variable.domain_name_zone_id,
+    spacelift_environment_variable.environment,
+  ]
+  stack_id = spacelift_stack.hello-service.id
+}
