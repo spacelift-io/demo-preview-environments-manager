@@ -60,7 +60,7 @@ resource "spacelift_policy_attachment" "push-policy" {
 
 resource "spacelift_policy" "push-policy" {
   name = "Demo Preview Environments Environment Push Policy"
-  type = "PUSH"
+  type = "GIT_PUSH"
   body = file("${path.module}/policies/push-policy.rego")
 }
 
