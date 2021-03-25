@@ -52,7 +52,7 @@ resource "aws_api_gateway_domain_name" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint" {
-//  provider = aws.us-east-1
+  provider = aws.us-east-1
 
   name    = "*.${var.domain_name}"
   type    = "A"
