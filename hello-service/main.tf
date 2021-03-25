@@ -2,6 +2,7 @@ module "instances" {
   source              = "./environments"
   current_stack_id    = var.current_stack_id
   aws_role            = var.aws_role
+  certificate_arn     = aws_acm_certificate.endpoint-certificate.arn
   domain_name         = var.domain_name
 
   providers = {
@@ -41,14 +42,6 @@ resource "aws_route53_record" "endpoint-certificate" {
   ttl     = 60
   type    = each.value.type
   zone_id = var.domain_name_zone_id
-}
-
-resource "aws_api_gateway_domain_name" "test-endpoint" {
-  provider = aws.eu-west-1
-
-  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
-  domain_name     = "test.${var.domain_name}"
-  security_policy = "TLS_1_2"
 }
 
 resource "aws_api_gateway_domain_name" "endpoint" {
