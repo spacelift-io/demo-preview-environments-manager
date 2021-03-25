@@ -43,7 +43,7 @@ resource "aws_route53_record" "endpoint-certificate" {
   zone_id = var.domain_name_zone_id
 }
 
-resource "aws_api_gateway_domain_name" "endpoint" {
+resource "aws_api_gateway_domain_name" "test-endpoint" {
   provider = aws.eu-west-1
 
   certificate_arn = aws_acm_certificate.endpoint-certificate.arn
