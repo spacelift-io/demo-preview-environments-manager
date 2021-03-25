@@ -14,7 +14,6 @@ variable "spacelift_stack_id" {
 
 provider "aws" {
   region = "us-east-1"
-  alias = "us-east-1"
 }
 
 terraform {
