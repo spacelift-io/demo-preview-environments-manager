@@ -8,6 +8,7 @@ module "instance_1" {
   code_version            = "f541fdef95a91a90e1e0c768f8a9e8ecbc3a22c0"
   domain_name             = var.domain_name
   environment             = "ddccbbaa"
+  push_policy_id          = var.push_policy_id
 
   providers = {
     spacelift = spacelift

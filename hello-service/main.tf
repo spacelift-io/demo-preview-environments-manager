@@ -1,9 +1,10 @@
 module "instances" {
-  source              = "./environments"
-  current_stack_id    = var.current_stack_id
-  aws_role            = var.aws_role
-  certificate_arn     = aws_acm_certificate.endpoint-certificate.arn
-  domain_name         = var.domain_name
+  source           = "./environments"
+  current_stack_id = var.current_stack_id
+  aws_role         = var.aws_role
+  certificate_arn  = aws_acm_certificate.endpoint-certificate.arn
+  domain_name      = var.domain_name
+  push_policy_id   = spacelift_policy.push-policy.id
 
   providers = {
     spacelift = spacelift
@@ -11,7 +12,13 @@ module "instances" {
 }
 
 // You can put common dependencies of all preview environments here.
-// In this case, we create a wildcard certificate.
+// In this case, we create a policy and a wildcard certificate.
+
+resource "spacelift_policy" "push-policy" {
+  name = "Demo Preview Environments Environment Push Policy"
+  type = "GIT_PUSH"
+  body = file("${path.module}/policies/push-policy.rego")
+}
 
 resource "aws_acm_certificate" "endpoint-certificate" {
   provider = aws.us-east-1
