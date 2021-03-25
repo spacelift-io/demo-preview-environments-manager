@@ -10,6 +10,10 @@ variable "current_stack_id" {}
 provider "aws" {
 }
 
+provider "aws" {
+  alias = "us-east-1"
+}
+
 terraform {
   required_providers {
     spacelift = {

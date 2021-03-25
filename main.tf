@@ -8,6 +8,7 @@ module "hello-service" {
 
   providers = {
     aws.us-east-1 = aws
+    aws = aws
     spacelift     = spacelift
   }
 }
