@@ -39,13 +39,13 @@ resource "aws_route53_record" "endpoint-certificate" {
   zone_id = var.domain_name_zone_id
 }
 
-resource "aws_api_gateway_domain_name" "endpoint" {
-  provider = aws.us-east-1
-
-  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
-  domain_name     = "*.${var.domain_name}"
-  security_policy = "TLS_1_2"
-}
+//resource "aws_api_gateway_domain_name" "endpoint" {
+//  provider = aws.us-east-1
+//
+//  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
+//  domain_name     = "*.${var.domain_name}"
+//  security_policy = "TLS_1_2"
+//}
 
 //resource "aws_route53_record" "endpoint" {
 ////  provider = aws.us-east-1
