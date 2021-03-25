@@ -14,5 +14,7 @@ module "hello-service" {
 }
 
 data "aws_route53_zone" "liftspace" {
+  provider = aws.us-east-1
+
   name = "${var.domain_name}."
 }
