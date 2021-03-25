@@ -13,6 +13,8 @@ module "instances" {
 // In this case, we create a wildcard certificate.
 
 resource "aws_acm_certificate" "endpoint-certificate" {
+  provider = aws.us-east-1
+
   domain_name       = "*.${var.domain_name}"
   validation_method = "DNS"
 
@@ -22,6 +24,8 @@ resource "aws_acm_certificate" "endpoint-certificate" {
 }
 
 resource "aws_route53_record" "endpoint-certificate" {
+  provider = aws.us-east-1
+
   for_each = {
     for dvo in aws_acm_certificate.endpoint-certificate.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name

@@ -7,8 +7,8 @@ module "hello-service" {
   domain_name_zone_id = data.aws_route53_zone.liftspace.zone_id
 
   providers = {
+    aws.eu-west-1 = aws.eu-west-1
     aws.us-east-1 = aws
-    aws = aws
     spacelift     = spacelift
   }
 }
