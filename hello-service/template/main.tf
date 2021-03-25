@@ -55,7 +55,7 @@ resource "spacelift_environment_variable" "environment" {
 
 resource "spacelift_policy_attachment" "push-policy" {
   stack_id  = spacelift_stack.hello-service.id
-  policy_id = spacelift_policy.push-policy.id
+  policy_id = var.push_policy_id
 }
 
 resource "spacelift_stack_destructor" "hello-service" {
@@ -66,6 +66,7 @@ resource "spacelift_stack_destructor" "hello-service" {
     spacelift_environment_variable.code_version,
     spacelift_environment_variable.domain_name,
     spacelift_environment_variable.environment,
+    spacelift_policy_attachment.push-policy,
   ]
   stack_id = spacelift_stack.hello-service.id
 }
