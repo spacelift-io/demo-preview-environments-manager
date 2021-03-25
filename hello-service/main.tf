@@ -2,9 +2,7 @@ module "instances" {
   source              = "./environments"
   current_stack_id    = var.current_stack_id
   aws_role            = var.aws_role
-  certificate_arn     = aws_acm_certificate.endpoint-certificate.arn
   domain_name         = var.domain_name
-  domain_name_zone_id = var.domain_name_zone_id
 
   providers = {
     spacelift = spacelift
@@ -44,3 +42,24 @@ resource "aws_route53_record" "endpoint-certificate" {
   type    = each.value.type
   zone_id = var.domain_name_zone_id
 }
+
+resource "aws_api_gateway_domain_name" "endpoint" {
+  certificate_arn = aws_acm_certificate.endpoint-certificate.arn
+  domain_name     = "*.${var.domain_name}"
+  security_policy = "TLS_1_2"
+}
+
+resource "aws_route53_record" "endpoint" {
+  provider = aws.us-east-1
+
+  name    = "*.${var.domain_name}"
+  type    = "A"
+  zone_id = var.domain_name_zone_id
+
+  alias {
+    evaluate_target_health = true
+    name                   = aws_api_gateway_domain_name.endpoint.cloudfront_domain_name
+    zone_id                = aws_api_gateway_domain_name.endpoint.cloudfront_zone_id
+  }
+}
+
