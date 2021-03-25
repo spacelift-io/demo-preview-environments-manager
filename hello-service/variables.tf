@@ -8,7 +8,7 @@ variable "current_stack_id" {}
 //}
 
 provider "aws" {
-  alias = "us-east-1"
+  // alias = "us-east-1"
 }
 
 terraform {
