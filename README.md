@@ -25,7 +25,7 @@ The following repositories are used:
 
 # Detailed Descriptions
 
-### Manager
+## Manager
 The root of the manager repository contains one directory per service, for which preview environments are created. In this case, there's one directory, `hello-service`, which is a module instantiated by the `main.tf` file.
 
 Looking at the hello-service directory we can see multiple things:
@@ -51,7 +51,7 @@ trigger[stack.id] {
 ```
 Whenever it finishes execution, it will trigger any stacks it controls, for which environment variables have been changed. This way, if only the `code_version` for a preview environment changes, which only results in an environment variable change, the Stack representing this preview environment will be triggered.
 
-### Service
+## Service
 The service is code for an AWS Lambda responding with Hello World and the current commit SHA.
 
 Whenever a commit to a non-master branch is pushed, it creates a zipfile with the source code, and uploads it to an S3 bucket with the object name being <commit_sha>.zip.
@@ -60,15 +60,15 @@ Whenever a commit to the master branch is pushed, it does the same, but uploads 
 
 For each PR, it will create a file in the `hello-service/environments` directory, with the `code_version` filled with the head commit SHA of the Pull Request, and the `infra_repository_branch` filled with `master`. It updates the files on each commit added to the PR, and deletes the file when the Pull Request is closed.
 
-### Infra
+## Infra
 The infra repository creates the actual AWS Lambda and API Gateway resources.
 
 For each PR, it will create a file in the `hello-service/environments` directory, with the `code_version` filled with `latest`, and the `infra_repository_branch` filled with the source branch of the PR. It updates the files on each commit added to the PR, and deletes the file when the Pull Request is closed.
 
-### Setup
+## Setup
 This just creates the manager Stack with the required Trigger Policy attached.
 
-### Update File Action
+## Update File Action
 You can use this action to operate on files in a different repository. A GitHub token with suitable permissions has to be provided.
 
 # Usage
